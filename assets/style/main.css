@@ -1,0 +1,223 @@
+/*
+ 	========================================
+	 CSS RESET
+	 	http://meyerweb.com/eric/tools/css/reset/ 
+  		 v2.0 | 20110126
+   		License: none (public domain)
+	========================================
+*/
+
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*  
+    ======================================================
+    Colors
+    ======================================================
+*/
+:root{
+    --head-color: #3EB488; 
+    --highlight-color: #2aaf2d;
+    --font-color-primary: #fff;       
+    --font-color-secondary: #000;
+    --bg-color: #1E1D21;
+    --red-color: #EA4335;
+    --blue-color: #4285f4;
+    --width-mob: 100%;
+    --width-desk: 80%;
+
+}
+
+
+
+/*
+    ======================================================
+    Global Style
+    ======================================================
+*/
+
+/*Border box fit*/
+html{
+    box-sizing: border-box;
+}
+
+*, *:before, *:after{
+    box-sizing: inherit;
+}
+
+
+body{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
+  text-align: center;
+  line-height: 1.6em;
+  background-color: var(--bg-color);
+  color: var(--font-color-primary);
+}
+
+
+
+.container{
+  width: var(--width-mob);
+}
+
+/* HEADER */
+header{
+  background: var(--head-color);
+  margin-bottom: 2em;
+  padding-bottom: 1.5em;
+  color: var(--font-color-secondary);
+  height: 20%;
+  border-bottom-left-radius: 25%;
+  border-bottom-right-radius: 25%;
+}
+
+header h1{
+  width: 90%;
+  margin: 0 auto;
+  font-family: 'Hind', sans-serif;
+  font-size: 2.8em;
+  font-weight: 600;
+  line-height: 1.3em;
+  padding-top: 0.5em;
+  text-shadow: var(--font-color-primary) 2px 1px;
+}
+
+header p{
+  width: 80%;
+  margin: 0 auto;
+}
+
+
+/*  Section */
+.reset, .refresh-text{
+  width: 10rem;
+  height: 2.5em;
+  margin: 1em 0.5em 0 0;
+  background: var(--highlight-color);
+  color: var(--font-color-primary);
+  font-size: 1em;
+  font-weight: 600;
+  border-radius: 50px;
+  position: relative;
+}
+
+.btn{
+  position: absolute;
+  width: var(--width-mob);
+  margin: 0 auto 50px auto;
+}
+
+.reset:active, .refresh-text:active{
+  box-shadow: 0 3px 0 #00823F;
+  top: 3px;
+}
+.reset{
+  background: var(--red-color);
+}
+
+textarea{
+  width: 80%;
+  margin: 1.5em auto;
+  border-radius: 10px;
+  border: 8px solid var(--bg-color);
+  font-size: 1.2em;
+  color: var(--font-color-secondary);
+  padding: 10px;
+}
+
+
+/* Reponsive */
+
+@media only screen and (min-width:1000px){
+  .container{
+    width:var(--width-desk);
+    margin: 0 auto;
+  }
+
+  body{
+    font-size: 1.5em;
+  }
+
+  header{
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+  }
+
+  header h1{
+    font-size: 3.5em;
+    text-shadow: var(--font-color-primary) 3px 2px;
+  }
+
+  .reset, .refresh-text{
+    width: 15rem;
+  }
+
+  .btn{
+    width: var(--width-desk);
+    margin: 0 auto;
+  }
+
+  textarea{
+    border-radius: 20px;
+  }
+  
+}
+
+@media only screen and (min-width:1250px){
+
+  body{
+    font-size: 1.5em;
+  }
+  h1{
+    font-size: 4em;
+    text-shadow: var(--font-color-primary) 3px 2px;
+  }
+
+  .reset, .refresh-text{
+    width: 20rem;
+  }
+  
+}
