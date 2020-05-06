@@ -13,31 +13,33 @@
     <header>
       <div class="container">
         <h1>Typing Speed Test</h1>
-        <p>The time starts when you start writing and stops when you enter the correct answer.
+        <p>Copy the text below. <br>The time starts when you start writing and stops when you enter the correct answer.
         </p>
       </div>
     </header>
 
     <div class="container">
-      <section>
+      <p class="label-text">Match this text:</p>
+      <div class="text">
         <p class="text-to-type">Text to type.</p>
+      </div>
+      
 
-        <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10"></textarea>
+      <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10" placeholder="The time starts when you start writing."></textarea>
 
-        <p class="label">Time: <span class="time">00:00:00</span></p>
-        <p class="label">Number of errors: <span class="errors"></span></p>
+      <p class="label">Time: <span class="time">00:00:00</span></p>
+      <p class="label">Number of errors: <span class="errors"></span></p>
 
-        <div class="btn">
-          <button class="reset">Reset</button>
-          <button class="refresh-text">New Sentence</button>
-        </div>
+      <div class="btn">
+        <button class="reset">Reset</button>
+        <button class="refresh-text">New Sentence</button>
+      </div>
 
-
-      </section>
+      
 
   </div>
 
-    <link rel="stylesheet" href="assets/script/script.js">
-
+  <script src="assets/script/script.js"> </script>
+  
 </body>
 </html>
