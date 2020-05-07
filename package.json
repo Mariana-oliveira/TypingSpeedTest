@@ -1,0 +1,19 @@
+{
+  "name": "typingspeed",
+  "version": "1.0.0",
+  "description": "The time starts when the user starts writing and stops when the user enter the correct answer.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mariana-oliveira/TypingSpeedTest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mariana-oliveira/TypingSpeedTest/issues"
+  },
+  "homepage": "https://github.com/Mariana-oliveira/TypingSpeedTest#readme"
+}
