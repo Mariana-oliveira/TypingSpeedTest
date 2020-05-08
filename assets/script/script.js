@@ -3,12 +3,26 @@ const TIME = document.querySelector(".time");
 const ERRORS = document.querySelector(".errors");
 const RESET = document.querySelector(".reset");
 const REFRESH_TEXT = document.querySelector(".refresh-text");
-const TEXT_TO_TYPE = document.querySelector(".text-to-type");
+const TEXT_P = document.querySelector(".text-to-type");
+const TEXT_TO_TYPE = document.querySelector(".text-to-type ").innerHTML;
 
 
-var time = [0,0,0,0];
+var time = [0,0,0,0];  //min, sec, csec, csec
 var timerRunning = false;
-var errorCount = 0;
+var totalErrors = 0;
+var typedLength = [0,0]; // min, max
+var interval;
+
+var textArray = [
+	"Text to type.", 
+	"The most common way people give up their power is by thinking they don’t have any.", 
+	"Great things never come from comfort zones.",
+	"Push yourself, because no one else is going to do it for you.",
+	"It's going to be hard, but hard does not mean impossible.",
+	"Learning never exhausts the mind.",
+  	"The only way to do great work is to love what you do."
+];
+var currentText = 0;
 
 //Function that adds zero leading
 function LeadingZero(time){
@@ -30,18 +44,23 @@ function CountingTime(){
 }
 
 //Function to count errors
-function ErrorCounter(){
-    errorCount++;
-    ERRORS.textContent = errorCount;
+function ErrorCounter(textTyped, originalText){
+	
+	let errorCount =0
+
+	for(i = 0; i < textTyped.length; i++){
+		textTyped[i] != originalText[i] ? errorCount++ : errorCount;
+	}
+	totalErrors += errorCount;
+	ERRORS.textContent = totalErrors;
 }
 
 
 // Function that starts the timer:
 function StartTime(){
-	
 	if(!timerRunning && TEXTAREA.value.length === 0){
 		timerRunning = true;
-		setInterval(CountingTime, 10);
+		interval = setInterval(CountingTime, 10);
 	}
 }
 
@@ -49,13 +68,41 @@ function StartTime(){
 // Function to check if the text entered matches the text to type: 
 function CheckSpelling(){
 	let textTyped = TEXTAREA.value;
-	let originalText = TEXT_TO_TYPE.textContent.substring(0, textTyped.length);
+	let originalTextSub = TEXT_TO_TYPE.substring(0, textTyped.length);
 
-	if(  textTyped == originalText){
+	if(textTyped == TEXT_TO_TYPE)
+	{
+		clearInterval(interval);
+		TEXTAREA.style.borderColor = "#429890";
+
+	} else if(textTyped == originalTextSub){
+
 		TEXTAREA.style.borderColor = "#4285f4";
+		
 	}else{
 		TEXTAREA.style.borderColor = "#EA4335";
-		ErrorCounter();
+				
+		
+		// To be sure that when deleting it's not counting errors
+
+
+		if(typedLength[1] < textTyped.length){
+			typedLength[1] = textTyped.length;
+			typedLength[0] = textTyped.length;
+		}else{
+			typedLength[0] = textTyped.length;
+		}
+
+		// if(textTyped.length >= typedLength[0])
+
+		if(typedLength[0] == typedLength[1]){
+			ErrorCounter(textTyped, originalTextSub);
+		}
+
+		console.log("Current: " + textTyped.length);
+		console.log("MAX: " + typedLength[1]);
+		console.log("MIN: " + typedLength[0]);
+		
 	}
 
 }
@@ -63,13 +110,26 @@ function CheckSpelling(){
 
 // Function to reset the timer
 function ResetTimer(){
+	clearInterval(interval);
+	interval = null;
+	time = [0,0,0,0];
+	totalErrors = 0;
+	timerRunning = false;
 
+	ERRORS.innerHTML = "0";
+	TEXTAREA.value = "";
+	TIME.innerHTML = "00:00:00";
+	TEXTAREA.style.borderColor = "#1E1D21";
 }
 
 
 // Function to change the text to type
 function ChangeTextToType(){
-
+	ResetTimer()
+	currentText < (textArray.length-1) ? currentText++ : currentText =0;
+	console.log(textArray.length);
+	console.log(currentText);
+	TEXT_P.innerHTML = textArray[currentText];
 }
 
 

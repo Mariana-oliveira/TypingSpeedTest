@@ -67,7 +67,7 @@ table {
     --blue-color: #4285f4;
     --text-back-color:  #3B3F44;
     --width-mob: 100%;
-    --width-desk: 80%;
+    --width-desk: 90%;
 
 }
 
@@ -172,6 +172,21 @@ textarea{
   font-size: 1.2em;
   color: var(--font-color-secondary);
   padding: 10px;
+}
+
+.grid-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 5px;
+
+}
+
+.label {
+  text-align: right;
+}
+
+.time, .errors {
+  text-align: left;
 }
 
 .reset, .refresh-text{
