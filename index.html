@@ -24,7 +24,8 @@
     </div>
     
 
-    <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10" placeholder="The time starts when you start writing."></textarea>
+    <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10" placeholder="The time starts when you start writing." onkeyup="checkSpelling(event)"
+    onkeypress="startTime()"></textarea>
 
     <div class= "grid-container">
       <p class="label">Time:</p>
@@ -35,8 +36,8 @@
 
 
     <div class="btn">
-      <button class="reset">Reset</button>
-      <button class="refresh-text">New Sentence</button>
+      <button class="reset" onclick="resetTimer()">Reset</button>
+      <button class="refresh-text" onclick="changeTextToType()">New Sentence</button>
     </div>
 
   </div>
@@ -45,7 +46,7 @@
   <div class="modal" id="modal">
     <header class="modal-header">
       <h2 class="title">Great Job!</h2>
-      <button class="close-button">&times;</button>
+      <button class="close-button" onclick="closeModal()">&times;</button>
     </header>
     <div class="modal-body">
         <p>Time: <span class="modal-time"></span></p>
@@ -56,7 +57,7 @@
     </div>        
   </div>
 
-  <div id="overlay"></div>
+  <div id="overlay" onclick="closeModal()"></div>
 
   <script src="assets/script/script.js"> </script>
   

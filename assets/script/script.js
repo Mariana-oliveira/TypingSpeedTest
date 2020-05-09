@@ -1,17 +1,18 @@
 const TEXTAREA = document.querySelector(".text-typed");
 const TIME = document.querySelector(".time");
 const ERRORS = document.querySelector(".errors");
-const RESET = document.querySelector(".reset");
-const REFRESH_TEXT = document.querySelector(".refresh-text");
 const TEXT_P = document.querySelector(".text-to-type");
 const MODAL = document.querySelector(".modal");
-const CLOSE_MODAL_BUTTON = document.querySelector(".close-button");
 const OVERLAY = document.querySelector("#overlay");
 const MODAL_TIME = document.querySelector(".modal-time");
 const MODAL_ERRORS = document.querySelector(".modal-errors");
 const MODAL_WORDS = document.querySelector(".modal-words");
 const MODAL_CHAR = document.querySelector(".modal-char");
 const MODAL_ACCURACY = document.querySelector(".modal-accuracy");
+
+const BLUE_COLOR = "#4285f4";
+const GREEN_COLOR =  "#429890";
+const RED_COLOR = "#EA4335";
 
 
 // Global variables
@@ -37,20 +38,20 @@ TEXT_P.innerHTML = textArray[currentText];
 
 
 // Open Modal 
-function OpenModal(){
+function openModal(){
 	MODAL.classList.add("active");
 	OVERLAY.classList.add("active");
 }
 
 //Close Modal
-function CloseModal(){
+function closeModal(){
 	MODAL.classList.remove("active");
 	OVERLAY.classList.remove("active");
-	ResetTimer();
+	resetTimer();
 }
 
 //Populate Modal with info
-function PopulateModal(){
+function populateModal(){
 	let words = Math.round(textArray[currentText].split(" ").length / ((time[3]/100) / 60));
 	let chars = Math.round(textArray[currentText].length / ((time[3]/100) / 60));
 	let accuracy = Math.round( (1 - totalErrors / textArray[currentText].length) * 100);
@@ -66,7 +67,7 @@ function PopulateModal(){
 
 
 //Function that adds zero leading
-function LeadingZero(time){
+function leadingZero(time){
 	if(time<=9){
 		time= "0"+time;
 	}
@@ -74,8 +75,8 @@ function LeadingZero(time){
 }
 
 // Function that counts the time running:
-function CountingTime(){
-	TIME.innerText = `${LeadingZero(time[0])}:${LeadingZero(time[1])}:${LeadingZero(time[2])} `;
+function countingTime(){
+	TIME.innerText = `${leadingZero(time[0])}:${leadingZero(time[1])}:${leadingZero(time[2])} `;
 	time[3]++;
 
 	time[0] = Math.floor( (time[3]/100) / 60) ;
@@ -84,7 +85,7 @@ function CountingTime(){
 }
 
 //Function to count errors
-function ErrorCounter(typedText, originalText){
+function errorCounter(typedText, originalText){
 
 	let length = typedText.length -1;
 
@@ -97,17 +98,17 @@ function ErrorCounter(typedText, originalText){
 
 
 // Function that starts the timer:
-function StartTime(){
+function startTime(){
 
 	if(!timerRunning && TEXTAREA.value.length === 0){
 		timerRunning = true;
-		interval = setInterval(CountingTime, 10);
+		interval = setInterval(countingTime, 10);
 	}
 }
 
 
 // Function to check if the text entered matches the text to type: 
-function CheckSpelling(e){
+function checkSpelling(e){
 	let textTyped = TEXTAREA.value;
 	let originalTextSub = TEXT_TO_TYPE.substring(0, textTyped.length);
 
@@ -116,19 +117,19 @@ function CheckSpelling(e){
 	if(textTyped == TEXT_TO_TYPE)
 	{
 		clearInterval(interval);
-		TEXTAREA.style.borderColor = "#429890";
-		PopulateModal();
-		OpenModal();
+		TEXTAREA.style.borderColor = GREEN_COLOR;
+		populateModal();
+		openModal();
 
 	} else if(textTyped == originalTextSub){
 
-		TEXTAREA.style.borderColor = "#4285f4";
+		TEXTAREA.style.borderColor = BLUE_COLOR;
 		
 	}else{
-		TEXTAREA.style.borderColor = "#EA4335";
+		TEXTAREA.style.borderColor = RED_COLOR;
 			
 		if( ![8,37,38,39,40,46].includes(key)){	
-			ErrorCounter(textTyped, originalTextSub);
+			errorCounter(textTyped, originalTextSub);
 		}
 	}
 
@@ -136,7 +137,7 @@ function CheckSpelling(e){
 
 
 // Function to reset the timer
-function ResetTimer(){
+function resetTimer(){
 	clearInterval(interval);
 	interval = null;
 	time = [0,0,0,0];
@@ -151,8 +152,8 @@ function ResetTimer(){
 
 
 // Function to change the text to type
-function ChangeTextToType(){
-	ResetTimer();
+function changeTextToType(){
+	resetTimer();
 	currentText < (textArray.length-1) ? currentText++ : currentText =0;
 
 	TEXT_P.innerHTML = textArray[currentText];
@@ -160,12 +161,3 @@ function ChangeTextToType(){
 }
 
 
-
-
-// Event Listener
-TEXTAREA.addEventListener("keypress", StartTime, false);
-TEXTAREA.addEventListener("keyup", CheckSpelling, false);
-RESET.addEventListener("click", ResetTimer, false);
-REFRESH_TEXT.addEventListener("click", ChangeTextToType, false);
-CLOSE_MODAL_BUTTON.addEventListener("click", CloseModal, false);
-OVERLAY.addEventListener("click", CloseModal, false);
