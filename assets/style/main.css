@@ -176,7 +176,9 @@ textarea{
 
 .grid-container{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 50%;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 5px;
 
 }
@@ -222,6 +224,82 @@ textarea{
 }
 
 
+/* MODAL */
+.modal{
+  position: fixed;
+  z-index: 10;
+  top:50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  max-width: 80%;
+  width: 600px;
+  padding-bottom: 15px;
+
+  border: 2px solid var(--font-color-primary);
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--font-color-primary);
+  color: var(--font-color-secondary);
+  font-weight: 600;
+}
+
+.modal.active{
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header{
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+
+.modal-header .title{
+  width: 95%;
+  color: var(--head-color);
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.close-button{
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 1.25em;
+  font-weight: 600;
+  color: var(--font-color-primary);
+}
+
+.modal-body{
+  padding: 0 15px;
+}
+
+.modal-body p{
+  padding-bottom: 5px;
+}
+
+#overlay{
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  top: 0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+
+#overlay.active{
+  opacity: 1;
+  pointer-events: all;
+}
+
+
 /* Responsive */
 
 @media only screen and (min-width:1000px){
@@ -243,6 +321,11 @@ textarea{
     font-size: 3.5em;
     text-shadow: var(--font-color-primary) 2px 2px 6px;
   }
+
+  .grid-container{
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+  }
+
 
   .reset, .refresh-text{
     width: 15rem;

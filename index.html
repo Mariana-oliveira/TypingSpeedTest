@@ -9,40 +9,54 @@
 </head>
 <body>
   
-
-    <header>
-      <div class="container">
-        <h1>Typing Speed Test</h1>
-        <p>Copy the text below. <br>The time starts when you start writing and stops when you enter the correct answer.
-        </p>
-      </div>
-    </header>
-
+  <header>
     <div class="container">
-      <p class="label-text">Match this text:</p>
-      <div class="text">
-        <p class="text-to-type">Text to type.</p>
-      </div>
-      
+      <h1>Typing Speed Test</h1>
+      <p>Copy the text below. <br>The time starts when you start writing and stops when you enter the correct answer.
+      </p>
+    </div>
+  </header>
 
-      <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10" placeholder="The time starts when you start writing."></textarea>
+  <div class="container">
+    <p class="label-text">Match this text:</p>
+    <div class="text">
+      <p class="text-to-type">Text to type.</p>
+    </div>
+    
 
-      <div class= "grid-container">
-        <p class="label">Time:</p>
-        <p class="time">00:00:00</p>
-        <p class="label">Number of errors:</p>
-        <p class="errors">0</p>
-      </div>
+    <textarea name="text-typed" id="text-typed" class="text-typed" cols="30" rows="10" placeholder="The time starts when you start writing."></textarea>
+
+    <div class= "grid-container">
+      <p class="label">Time:</p>
+      <p class="time">00:00:00</p>
+      <p class="label">Errors:</p>
+      <p class="errors">0</p>
+    </div>
 
 
-      <div class="btn">
-        <button class="reset">Reset</button>
-        <button class="refresh-text">New Sentence</button>
-      </div>
-
-      
+    <div class="btn">
+      <button class="reset">Reset</button>
+      <button class="refresh-text">New Sentence</button>
+    </div>
 
   </div>
+
+
+  <div class="modal" id="modal">
+    <header class="modal-header">
+      <h2 class="title">Great Job!</h2>
+      <button class="close-button">&times;</button>
+    </header>
+    <div class="modal-body">
+        <p>Time: <span class="modal-time"></span></p>
+        <p>Errors: <span class="modal-errors"></span></p>
+        <p>words/min: <span class="modal-words"></span></p>
+        <p>char/min: <span class="modal-char"></span></p>
+        <p>% Accuracy: <span class="modal-accuracy"></span></p>
+    </div>        
+  </div>
+
+  <div id="overlay"></div>
 
   <script src="assets/script/script.js"> </script>
   
